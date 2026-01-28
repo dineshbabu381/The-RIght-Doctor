@@ -1,0 +1,19 @@
+<h2>People List</h2>
+
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Age</th>
+    <th>Actions</th>
+  </tr>
+  <tr *ngFor="let person of people">
+    <td>{{ person.name }}</td>
+    <td>{{ person.email }}</td>
+    <td>{{ person.age }}</td>
+    <td>
+      <a [routerLink]="['/people/edit', person.id]">Edit</a> |
+      <a [routerLink]="['/people/delete', person.id]">Delete</a>
+    </td>
+  </tr>
+</table>

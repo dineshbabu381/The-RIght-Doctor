@@ -1,0 +1,45 @@
+src/
+ ├── app/
+ │   ├── models/
+ │   │    └── person.model.ts
+ │   ├── services/
+ │   │    └── person.service.ts
+ │   ├── components/
+ │   │    ├── person-list/
+ │   │    ├── person-edit/
+ │   │    └── person-delete/
+ │   ├── app-routing.module.ts
+ │   ├── app.module.ts
+ │   └── app.component.ts
+ └── environments/
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Person } from '../models/person.model';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PersonService {
+
+  private apiUrl = 'http://localhost:3000/api'; // replace with given API
+
+  constructor(private http: HttpClient) {}
+
+  getPeople(): Observable<Person[]> {
+    return this.http.get<Person[]>(`${this.apiUrl}/people`);
+  }
+
+  getPerson(id: number): Observable<Person> {
+    return this.http.get<Person>(`${this.apiUrl}/people/${id}`);
+  }
+
+  updatePerson(id: number, person: Person): Observable<any> {
+    return this.http.put(`${this.apiUrl}/people/${id}`, person);
+  }
+
+  deletePerson(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/people/${id}`);
+  }
+}

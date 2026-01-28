@@ -1,0 +1,14 @@
+<h2>Edit Person</h2>
+
+<form [formGroup]="personForm" (ngSubmit)="onSubmit()">
+  <label>Name:</label>
+  <input formControlName="name"><br><br>
+
+  <label>Email:</label>
+  <input formControlName="email"><br><br>
+
+  <label>Age:</label>
+  <input formControlName="age" type="number"><br><br>
+
+  <button type="submit">Update</button>
+</form>
